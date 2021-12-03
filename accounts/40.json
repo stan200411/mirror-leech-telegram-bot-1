@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "optimal-transit-308010",
+  "private_key_id": "745e3e96765765e01406b3e2a3e8de4c4aff9a50",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCl6C/YaCy05s/J\n7PIL3YdmLv27xHePaH3x9f2Zv+cQnc7zFpWiXgBVezRLOsszLb1XTKN697SpOJ0L\nwJcO7Amk5wx/dPNLO8mhhI1Q4I/IV1BVbPEDqIjWQ+Kh+WmD+lMGWyL9pik2KjrT\nd4IO5jFp5aUO95SHbZf60/tzP8I2Amu42ax04KSkvZrP+dh7Ck9MZEStJNHuGIJ9\nOJFF3ms2mHqdCxGvVR+KpWbBDTGHipK9RV2mlwCwO0yne8YwgDRyBJMi9Cm6kK2V\nw9bN1UlrJc4TeiTJ5F6UWRDvcbr/2VtBp0fhv6nPephfqhmBR6tHAJLwPHLhEzeb\n/5ER20PVAgMBAAECggEAN/PXEwaLMVV4dZLeTOcg73Lgqu9HHUvx0eUS6sQAMyft\nsCkJPRGzziB3kfmZp0CBT0xvBB0/RiTsPhbtOyCa3gz4N5IjLVfUGA+Cs2iQxVHB\nK5ZKsF+qCo0phVP+5H5LeuTIp7/evUA/x6rR56F1v8+tu57+7i+lZngQoR07LAhY\nvc3I/s9ZmJcDcKPmWu17hnUi1K6l8JwTqj/+0Au39dcpVld/EdYI6vMRoHBxcurW\nyTItTNMJx8nvdXJKJ5MQmmXjZNwj0znneRXWanECdo6xwb/WUhp9Uzjqlt9Q9R2H\nCrjFtukIaZlqETo/sxLzh5sZwrMj5g+m7lHyT4PUrwKBgQDaFXybKQoQdLNjMq1t\nyvwQatqynsoWx8tXoOLdV4bO0GvSTwUteoRqR4tATL9PZMYiPznFiSorN+79sOXl\nBGQ+4LoRLiVlnaC1nqy3clYx1pyC39Nvpd4uxYt8x5qFEgs9qALL48ijdBeF+eTN\nm9YKWtg/tzRRFI2OKF6qracWdwKBgQDCwGZ7B+dGpmS1zweGUczJyhe9vEOvu2+s\ni4c+780evywVAWy7it2RPy/86fgSFTB+vQH1Kv1wXQTfAlU7MrVpk8mC1WtCcCML\ncO2DQJvYtc4PhK+2Szocib18tx21exxP+BlhZZEPrGnnTzLfY3tW2Ln+IRMg3Twk\nicUKlMFvEwKBgCTQUbuDfv5uJMYPDPWmuUwwLYDPiz+zNGEzeHhyyP/qcPkMe8xE\njUu/jgMpsXW+hi/Lyn3M/MBU7dQHY5d4WU+/8cjqqEdyB2oBQhiphWFeYAc7r15+\nenYcxMIok6348MrUrLwsVHc7JqloGLaYotYWpcCDtaImPQsNR4W6UKVbAoGAfQsK\nAc62SV+G5FE0VKLq6Vlv2uwpTYj8j/3abaeMvUQj6qzKgrQLxTmb9zjGhd3DEG0M\n97yNk3q2KPYXgXXykwJH7VBYmQTlC3CLn615IzDASKh6JYKxoicyWgQ8+Aw+xn3W\n1flfpX+fU9w/Hr2CMOXgrfHQlVZXSmKG+F9Av68CgYEAwJYm5QE7643OlNwfIR4L\nlhKtWSCHxh1Dfoz96m5r+/7ldZ8sjmTq5czzuf5E3ggfQ1X9WA0mM9PjpvMbEwM5\nWkPDZF6cm4hldpyXpy19KNaUhDX7rQ8zGH99aQflhQG/mV7gj+ZH11SmTjfSUuhn\nZ4pML4awm9IdHyfFMUPNQnw=\n-----END PRIVATE KEY-----\n",
+  "client_email": "mfc-r1sk4q5566mfw3h4bavdcq2g8k@optimal-transit-308010.iam.gserviceaccount.com",
+  "client_id": "100321454206489163699",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/mfc-r1sk4q5566mfw3h4bavdcq2g8k%40optimal-transit-308010.iam.gserviceaccount.com"
+}
