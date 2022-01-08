@@ -1,15 +1,13 @@
 from bot import aria2, DOWNLOAD_DIR, LOGGER
 from bot.helper.ext_utils.bot_utils import MirrorStatus
-from .status import Status
 
 def get_download(gid):
     return aria2.get_download(gid)
 
 
-class AriaDownloadStatus(Status):
+class AriaDownloadStatus:
 
     def __init__(self, gid, listener):
-        super().__init__()
         self.__gid = gid
         self.__download = get_download(self.__gid)
         self.__uid = listener.uid
@@ -18,16 +16,14 @@ class AriaDownloadStatus(Status):
 
     def __update(self):
         self.__download = get_download(self.__gid)
-        download = self.__download
-        if download.followed_by_ids:
-            self.__gid = download.followed_by_ids[0]
+        if self.__download.followed_by_ids:
+            self.__gid = self.__download.followed_by_ids[0]
 
     def progress(self):
         """
         Calculates the progress of the mirror (upload or download)
         :return: returns progress in percentage
         """
-        self.__update()
         return self.__download.progress_string()
 
     def size_raw(self):
@@ -73,12 +69,11 @@ class AriaDownloadStatus(Status):
 
     def getListener(self):
         return self.__listener
-    
+
     def uid(self):
         return self.__uid
 
     def gid(self):
-        self.__update()
         return self.__gid
 
     def cancel_download(self):

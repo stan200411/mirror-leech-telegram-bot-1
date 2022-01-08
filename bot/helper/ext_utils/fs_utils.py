@@ -19,7 +19,10 @@ VIDEO_SUFFIXES = ("M4V", "MP4", "MOV", "FLV", "WMV", "3GP", "MPG", "WEBM", "MKV"
 def clean_download(path: str):
     if os.path.exists(path):
         LOGGER.info(f"Cleaning Download: {path}")
-        shutil.rmtree(path)
+        try:
+            shutil.rmtree(path)
+        except FileNotFoundError:
+            pass
 
 def start_cleanup():
     try:
@@ -29,7 +32,7 @@ def start_cleanup():
 
 def clean_all():
     aria2.remove_all(True)
-    get_client().torrents_delete(torrent_hashes="all", delete_files=True)
+    get_client().torrents_delete(torrent_hashes="all")
     try:
         shutil.rmtree(DOWNLOAD_DIR)
     except FileNotFoundError:
@@ -166,11 +169,7 @@ def take_ss(video_file):
 
     if not os.path.lexists(des_dir):
         return None
-
-    Image.open(des_dir).convert("RGB").save(des_dir)
-    img = Image.open(des_dir)
-    img.resize((480, 320))
-    img.save(des_dir, "JPEG")
+    Image.open(des_dir).convert("RGB").save(des_dir, "JPEG")
     return des_dir
 
 def split(path, size, filee, dirpath, split_size, start_time=0, i=1, inLoop=False):
@@ -181,7 +180,7 @@ def split(path, size, filee, dirpath, split_size, start_time=0, i=1, inLoop=Fals
         base_name, extension = os.path.splitext(filee)
         split_size = split_size - 2500000
         while i <= parts :
-            parted_name = "{}_part{}{}".format(str(base_name), str(i).zfill(3), str(extension))
+            parted_name = "{}.part{}{}".format(str(base_name), str(i).zfill(3), str(extension))
             out_path = os.path.join(dirpath, parted_name)
             subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-i",
                             path, "-ss", str(start_time), "-fs", str(split_size),
@@ -189,14 +188,17 @@ def split(path, size, filee, dirpath, split_size, start_time=0, i=1, inLoop=Fals
             out_size = get_path_size(out_path)
             if out_size > 2097152000:
                 dif = out_size - 2097152000
-                split_size = split_size - dif + 2400000
+                split_size = split_size - dif + 2500000
                 os.remove(out_path)
                 return split(path, size, filee, dirpath, split_size, start_time, i, inLoop=True)
             lpd = get_media_info(out_path)[0]
+            if lpd <= 4 or out_size < 1000000:
+                os.remove(out_path)
+                break
             start_time += lpd - 3
             i = i + 1
     else:
-        out_path = os.path.join(dirpath, filee + "_")
+        out_path = os.path.join(dirpath, filee + ".")
         subprocess.run(["split", "--numeric-suffixes=1", "--suffix-length=3", f"--bytes={split_size}", path, out_path])
 
 def get_media_info(path):
@@ -205,6 +207,7 @@ def get_media_info(path):
                                           "json", "-show_format", path]).decode('utf-8')
         fields = json.loads(result)['format']
     except Exception as e:
+        LOGGER.error(f"get_media_info: {e}")
         return 0, None, None
     try:
         duration = round(float(fields['duration']))
@@ -219,4 +222,17 @@ def get_media_info(path):
     except:
         title = None
     return duration, artist, title
+
+def get_video_resolution(path):
+    try:
+        result = subprocess.check_output(["ffprobe", "-hide_banner", "-loglevel", "error", "-select_streams", "v:0",
+                                          "-show_entries", "stream=width,height", "-of", "json", path]).decode('utf-8')
+        fields = json.loads(result)['streams'][0]
+
+        width = int(fields['width'])
+        height = int(fields['height'])
+        return width, height
+    except Exception as e:
+        LOGGER.error(f"get_video_resolution: {e}")
+        return 480, 320
 
